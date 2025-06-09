@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrapper {
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+        background-color: #3c9ee8;
+
+    }
+
+    .box {
+        width: 300px;
+        height: 300px;
+        /* border: 4px solid #ccc; */
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
+
+    span {
+        display: inline-block;
+        width: 280px;
+        height: 15px;
+        background-color: #ccc;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.5s;
+    }
+
+    .left {
+        top: 26%;
+
+        transform: translate(-50%, -50%);
+
+    }
+
+    .left.active {
+        top: 52%;
+
+        transform: translate(-50%, -50%) rotate(-45deg);
+
+    }
+
+    .right {
+        top: 74%;
+
+        transform: translate(-50%, -50%);
+
+    }
+
+    .right.active {
+        top: 52%;
+
+        transform: translate(-50%, -50%) rotate(45deg);
+
+    }
+
+    .mindle.active {
+        display: none;
+    }
+
+    .nav {
+        height: 350px;
+        width: 100%;
+        background-color: #f1f72e;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.5s;
+
+    }
+
+    .nav.active {
+        height: 100%;
+    }
+
+    ul {
+
+        list-style: none;
+    }
+
+    li {
+        display: none;
+    }
+
+    li.active {
+        display: block;
+    }
+
+    .nav-link {
+        /* border: 1px solid black; */
+        padding: 20px 10px;
+        font-size: 48px;
+        transition: all 0.3s;
+    }
+
+    .font {
+        font-size: 150px;
+        font-weight: 800;
+    }
+
+    .random-part {
+        background-color: #fff;
+        padding: 10px;
+        text-align: center;
+        margin-top: 150px;
+    }
+    .nav-link:hover{
+        transform: scale(1.5);
+    }
+</style>
+
+<body>
+
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="box">
+                <span class="left "></span>
+                <span class="mindle"></span>
+                <span class="right "></span>
+            </div>
+            <ul>
+                <li class="nav-link ">about</li>
+                <li class="nav-link">shope</li>
+                <li class="nav-link">content</li>
+
+            </ul>
+
+        </nav>
+        <div class="random-part">
+            <h1 class="font">你好嗎？</h1>
+        </div>
+    </div>
+    <script>
+        const arr = ['我很好', '吃飽沒', '我餓了', '今天不減肥', '吃飽要刷牙', '睡覺要蓋被', '每天要洗澡', '妳好嗎']
+        const box = document.querySelector('.box')
+        const left = document.querySelector('.left')
+        const mindle = document.querySelector('.mindle')
+        const right = document.querySelector('.right')
+        const nav = document.querySelector('.nav')
+        const litem = document.querySelectorAll('.nav-link')
+        const word = document.querySelector('.font')
+
+
+        box.addEventListener('click', () => {
+            left.classList.toggle('active')
+            mindle.classList.toggle('active')
+            right.classList.toggle('active')
+            nav.classList.toggle('active')
+
+            litem.forEach((li, index) => {
+                li.classList.toggle('active')
+            })
+        })
+
+        // 文字部分
+        let i=0
+        setInterval(
+            function () {
+                i++
+                word.innerHTML = arr[i]
+                if(i>=7){
+                    i=0
+                }
+            }
+            , 400)
+    </script>
+</body>
+
+</html>
